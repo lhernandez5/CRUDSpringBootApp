@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, FormGroup, Form, Input, Label } from "reactstrap";
+import { Link } from "react-router-dom";
 
-function ClientEdit(props) {
+const ClientEdit = ({ props }) => {
+  console.log(props);
   const [item, setItem] = useState({
     name: "",
     email: "",
@@ -9,7 +11,7 @@ function ClientEdit(props) {
 
   useEffect(() => {
     const clientId = props.match.params.id;
-    
+
     if (clientId) {
       fetch(`/clients/${clientId}`)
         .then((response) => response.json())
@@ -32,6 +34,8 @@ function ClientEdit(props) {
     const clientId = props.match.params.id;
     const apiURl = clientId ? `/clients/${clientId}` : "/clients";
     const httpMethod = clientId ? "PUT" : "POST";
+
+    // Make the fetch request to update or create the client
     fetch(apiURl, {
       method: httpMethod,
       headers: {
@@ -50,6 +54,7 @@ function ClientEdit(props) {
   return (
     <>
       <div>
+        {console.log(props)}
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label for="name">Name</Label>
@@ -77,11 +82,7 @@ function ClientEdit(props) {
             <Button color="primary" type="submit">
               Save
             </Button>{" "}
-            <Button
-              color="secondary"
-              // tag={Link}
-              to="/clients"
-            >
+            <Button color="secondary" tag={Link} to="/clients">
               Cancel
             </Button>
           </FormGroup>
@@ -89,5 +90,5 @@ function ClientEdit(props) {
       </div>
     </>
   );
-}
+};
 export default ClientEdit;
