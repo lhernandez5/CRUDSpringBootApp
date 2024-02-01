@@ -60,7 +60,7 @@ function ClientList() {
                       size="sm"
                       color="primary"
                       tag={Link}
-                      to={"/clients/" + client.id}
+                      to={"/clients/" + client.id} 
                     >
                       Edit
                     </Button>
