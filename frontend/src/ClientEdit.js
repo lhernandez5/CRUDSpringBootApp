@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Button, FormGroup, Form, Input, Label } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-const ClientEdit = ({ props }) => {
-  console.log(props);
+const ClientEdit = () => {
+  const { id } = useParams();
+
   const [item, setItem] = useState({
     name: "",
     email: "",
   });
 
   useEffect(() => {
-    const clientId = props.match.params.id;
-
-    if (clientId) {
-      fetch(`/clients/${clientId}`)
+    if (id) {
+      fetch(`/clients/${id}`)
         .then((response) => response.json())
         .then((data) => setItem(data))
         .catch((error) => console.log("Error fetching client data:", error));
     }
     // Fetch existing data based on props.match.params.id
-  }, [props.match.params.id]);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,9 +31,9 @@ const ClientEdit = ({ props }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const clientId = props.match.params.id;
-    const apiURl = clientId ? `/clients/${clientId}` : "/clients";
-    const httpMethod = clientId ? "PUT" : "POST";
+    
+    const apiURl = id ? `/clients/${id}` : "/clients";
+    const httpMethod = id ? "PUT" : "POST";
 
     // Make the fetch request to update or create the client
     fetch(apiURl, {
@@ -54,7 +54,6 @@ const ClientEdit = ({ props }) => {
   return (
     <>
       <div>
-        {console.log(props)}
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label for="name">Name</Label>
