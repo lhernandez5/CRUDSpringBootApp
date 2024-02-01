@@ -67,7 +67,7 @@ function ClientList() {
                     <Button
                       size="sm"
                       color="danger"
-                      onClick={() => this.remove(client.id)}
+                      onClick={() => remove(client.id)}
                     >
                       Delete
                     </Button>
