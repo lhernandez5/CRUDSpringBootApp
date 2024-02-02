@@ -18,7 +18,6 @@ const ClientEdit = () => {
         .then((data) => setItem(data))
         .catch((error) => console.log("Error fetching client data:", error));
     }
-    // Fetch existing data based on id
   }, [id]);
 
   const handleChange = (e) => {
@@ -35,7 +34,6 @@ const ClientEdit = () => {
     const apiURl = clientId ? `/clients/${clientId}` : "/clients";
     const httpMethod = clientId ? "PUT" : "POST";
 
-    // Make the fetch request to update or create the client
     fetch(apiURl, {
       method: httpMethod,
       headers: {

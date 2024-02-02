@@ -1,8 +1,8 @@
 import "./App.css";
 import ClientEdit from "./ClientEdit";
 import ClientList from "./ClientList";
-import Home from './Home';
-import { BrowserRouter as Router, Routes,Route } from "react-router-dom";
+import Home from "./Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <Route path="/" exact={true} element={<Home />} />
         <Route path="/clients" exact={true} element={<ClientList />} />
         <Route path="/clients/:id" element={<ClientEdit />} />
+        <Route path="/clients/new" element={<ClientEdit />} />
       </Routes>
     </Router>
   );
